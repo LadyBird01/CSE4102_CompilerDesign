@@ -1,0 +1,21 @@
+delim [ \t] 
+WS {delim}+
+digit [0-9]
+number ({digit}+)
+
+{WS} {}
+{number} { printf("%s Number\n", yytext);}
+"+" { printf("%s ADD\n", yytext);}
+
+input = input.txt
+output = output.txt
+
+main01: Cal.l Cal.y
+     bison -d cal.y
+	 #lex Cal.l
+	 #gcc Cal.tab.c lex.yy.c 
+	 #a <$(input)> $(output)
+make03:
+	g++ test.cpp -o p01
+
+
